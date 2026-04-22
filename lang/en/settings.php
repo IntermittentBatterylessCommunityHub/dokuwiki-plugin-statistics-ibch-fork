@@ -6,3 +6,9 @@ $lang['nolocation'] = 'Do not resolve location information (country, region, cit
 $lang['nousers'] = 'Do not log any identifying information about logged in users (user names, groups, etc).';
 $lang['retention'] = 'Number of days to keep statistics data. All older data will be deleted! <code>0</code> means all data is kept indefinitely.';
 $lang['timezone'] = 'Force timezone. Use a PHP timezone identifier (formatted "Europe/Berlin") if your system is showing wrong times.';
+
+/**
+ * CICADA additions
+ */
+
+ $lang['advancedanon'] = 'Add dummy values to some SQLite tables to depersonalize records.  Should be used in combination with the anonymizing features above.';
