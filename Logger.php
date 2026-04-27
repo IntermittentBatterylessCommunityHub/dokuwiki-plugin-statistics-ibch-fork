@@ -333,7 +333,13 @@ class Logger
             $host = gethostbyaddr($ip);
         }
 
-        if ($this->hlp->getConf('nolocation')) {
+        //CICADA: Add advancedanon handling to insert dummy IP value, disable
+        //location data when advanced anon is enabled.
+        if ($this->hlp->getConf('advancedanon')) {
+            $hash = '0.0.0.0';
+        }
+
+        if ($this->hlp->getConf('nolocation') || $this->hlp->getConf('advancedanon')) {
             // if we don't resolve location data, we just return the IP address
             return $hash;
         }
@@ -385,13 +391,7 @@ class Logger
 
         $referer = $INPUT->filter('trim')->str('r');
 
-        //CICADA: set ip to dummy value if advancedanon enabled
-        if ($this->hlp->getConf('advancedanon')){
-            $ip = '0.0.0.0';
-        }
-        else {
-            $ip = $this->logIp(); // resolve the IP address
-        }
+        $ip = $this->logIp(); // resolve the IP address
 
         $data = [
             'page' => $INPUT->filter('cleanID')->str('p'),
@@ -403,8 +403,6 @@ class Logger
             'vy' => $INPUT->int('vy'),
             'session' => $this->session,
         ];
-
-        //CICADA TBD: add session handling
 
         $this->db->exec(
             '
@@ -471,12 +469,6 @@ class Logger
             'inline' => $inline,
         ];
 
-        //CICADA: set ip to dummy value if advancedanon enabled
-        //CICADA TBD: Add session handling
-        if ($this->hlp->getConf('advancedanon')){
-            $data['ip'] = '0.0.0.0'
-        }
-
         $this->db->exec(
             '
                 INSERT INTO media ( dt, media, ip, session, size, mime1, mime2, inline )
@@ -502,12 +494,6 @@ class Logger
             'ip' => $this->logIp(), // resolve the IP address
             'session' => $this->session
         ];
-
-        //CICADA: set ip to dummy value if advancedanon enabled
-        //CICADA TBD: Add session handling
-        if ($this->hlp->getConf('advancedanon')){
-            $data['ip'] = '0.0.0.0'
-        }
 
         $this->db->exec(
             'INSERT INTO edits (
@@ -554,9 +540,6 @@ class Logger
     public function logSearch(string $query, array $words): void
     {
         if (!$query) return;
-
-        //CICADA TBD: add advancedanon handling
-        //probably need to break the variables into a separate data struct as with previous functions
 
         $sid = $this->db->exec(
             'INSERT INTO search (dt, ip, session, query) VALUES (CURRENT_TIMESTAMP, ?, ? , ?)',
