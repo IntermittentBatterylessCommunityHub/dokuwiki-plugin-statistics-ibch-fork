@@ -9,7 +9,7 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <gohr@cosmocode.de>
  */
-use dokuwiki\plugin\statistics\IgnoreException;
+use dokuwiki\plugin\cicadastatistics\IgnoreException;
 use dokuwiki\ErrorHandler;
 
 if (!defined('DOKU_INC')) define('DOKU_INC', realpath(__DIR__ . '/../../../') . '/');
@@ -20,7 +20,7 @@ session_write_close();
 global $INPUT;
 
 /** @var helper_plugin_statistics $plugin */
-$plugin = plugin_load('helper', 'statistics');
+$plugin = plugin_load('helper', 'cicadastatistics');
 $plugin->sendGIF(); // browser be done
 
 $logger = $plugin->getLogger();

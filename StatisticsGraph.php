@@ -1,14 +1,14 @@
 <?php
 
 // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
-namespace dokuwiki\plugin\statistics;
+namespace dokuwiki\plugin\cicadastatistics;
 
 /**
  * Create the data for graph visualization
  */
 class StatisticsGraph
 {
-    private \helper_plugin_statistics $hlp;
+    private \helper_plugin_cicadastatistics $hlp;
     private string $from;
     private string $to;
     private int $width;
@@ -23,7 +23,7 @@ class StatisticsGraph
      * @param int $width width of the graph in pixels
      * @param int $height height of the graph in pixels
      */
-    public function __construct(\helper_plugin_statistics $hlp, $from, $to, $width, $height)
+    public function __construct(\helper_plugin_cicadastatistics $hlp, $from, $to, $width, $height)
     {
         $this->hlp = $hlp;
         $this->from = $from;
