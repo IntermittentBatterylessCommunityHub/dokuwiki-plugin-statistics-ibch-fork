@@ -9,7 +9,7 @@ use dokuwiki\Extension\EventHandler;
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <gohr@cosmocode.de>
  */
-class action_plugin_statistics extends ActionPlugin
+class action_plugin_cicadastatistics extends ActionPlugin
 {
     /**
      * register the eventhandlers and initialize some options
@@ -46,7 +46,7 @@ class action_plugin_statistics extends ActionPlugin
         global $INPUT;
 
         // load session data
-        $session = $_SESSION[DOKU_COOKIE]['statistics'] ?? [];
+        $session = $_SESSION[DOKU_COOKIE]['cicadastatistics'] ?? [];
 
         // reset if session is too old
         if (time() - ($session['time'] ?? 0) > 60 * 15) {
@@ -67,7 +67,7 @@ class action_plugin_statistics extends ActionPlugin
         }
 
         // store session and cookie data
-        $_SESSION[DOKU_COOKIE]['statistics'] = $session;
+        $_SESSION[DOKU_COOKIE]['cicadastatistics'] = $session;
 
         // Workaround for dokuwiki/dokuwiki#4544
         $old = get_doku_pref('plgstats', false);
@@ -82,7 +82,7 @@ class action_plugin_statistics extends ActionPlugin
     public function putpixel()
     {
         global $ID, $INPUT;
-        $url = DOKU_BASE . 'lib/plugins/statistics/dispatch.php?p=' . rawurlencode($ID) .
+        $url = DOKU_BASE . 'lib/plugins/cicadastatistics/dispatch.php?p=' . rawurlencode($ID) .
             '&amp;r=' . rawurlencode($INPUT->server->str('HTTP_REFERER')) . '&rnd=' . time();
 
         echo '<noscript><img alt="" src="' . $url . '" width="1" height="1" /></noscript>';
@@ -105,7 +105,7 @@ class action_plugin_statistics extends ActionPlugin
             $type = 'C';
         }
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $hlp->getLogger()->logEdit($event->data[1] . ':' . $event->data[2], $type);
     }
 
@@ -115,7 +115,7 @@ class action_plugin_statistics extends ActionPlugin
     public function logsearch(Event $event, $param)
     {
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $hlp->getLogger()->logSearch($event->data['query'], $event->data['highlight']);
     }
 
@@ -148,7 +148,7 @@ class action_plugin_statistics extends ActionPlugin
         if (!$type) return;
 
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $hlp->getLogger()->logLogin($type, $user);
     }
 
@@ -159,7 +159,7 @@ class action_plugin_statistics extends ActionPlugin
     {
         if ($event->data['type'] == 'create') {
             /** @var helper_plugin_statistics $hlp */
-            $hlp = plugin_load('helper', 'statistics');
+            $hlp = plugin_load('helper', 'cicadastatistics');
             $hlp->getLogger()->logLogin('C', $event->data['params'][0]);
         }
     }
@@ -181,7 +181,7 @@ class action_plugin_statistics extends ActionPlugin
         }
 
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $hlp->getLogger()->logMedia(
             $event->data['media'],
             $event->data['mime'],
@@ -198,7 +198,7 @@ class action_plugin_statistics extends ActionPlugin
         echo 'Plugin Statistics: started' . DOKU_LF;
 
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $db = $hlp->getDB();
 
         // check if a history was gathered already today
@@ -242,7 +242,7 @@ class action_plugin_statistics extends ActionPlugin
         $retention = (int)$this->getConf('retention');
         if ($retention <= 0) return;
         // pruning is only done once a day
-        $touch = getCacheName('statistics_retention', '.statistics-retention');
+        $touch = getCacheName('cicadastatistics_retention', '.cicadastatistics-retention');
         if (file_exists($touch) && time() - filemtime($touch) < 24 * 3600) {
             return;
         }
@@ -265,7 +265,7 @@ class action_plugin_statistics extends ActionPlugin
         ];
 
         /** @var helper_plugin_statistics $hlp */
-        $hlp = plugin_load('helper', 'statistics');
+        $hlp = plugin_load('helper', 'cicadastatistics');
         $db = $hlp->getDB();
 
         $db->getPdo()->beginTransaction();

@@ -1,9 +1,9 @@
 <?php
 
-namespace dokuwiki\plugin\statistics\test;
+namespace dokuwiki\plugin\cicadastatistics\test;
 
 use DokuWikiTest;
-use dokuwiki\plugin\statistics\SearchEngines;
+use dokuwiki\plugin\cicadastatistics\SearchEngines;
 
 /**
  * Tests for the SearchEngines class

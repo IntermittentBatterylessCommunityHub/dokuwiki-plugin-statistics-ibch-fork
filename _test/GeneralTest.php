@@ -1,6 +1,6 @@
 <?php
 
-namespace dokuwiki\plugin\statistics\test;
+namespace dokuwiki\plugin\cicadastatistics\test;
 
 use DokuWikiTest;
 

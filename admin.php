@@ -2,7 +2,7 @@
 
 // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
 use dokuwiki\Extension\AdminPlugin;
-use dokuwiki\plugin\statistics\SearchEngines;
+use dokuwiki\plugin\cicadastatistics\SearchEngines;
 
 /**
  * statistics plugin
@@ -10,7 +10,7 @@ use dokuwiki\plugin\statistics\SearchEngines;
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <gohr@splitbrain.org>
  */
-class admin_plugin_statistics extends AdminPlugin
+class admin_plugin_cicadastatistics extends AdminPlugin
 {
     /** @var string the currently selected page */
     protected $opt = '';
@@ -77,7 +77,7 @@ class admin_plugin_statistics extends AdminPlugin
      */
     public function __construct()
     {
-        $this->hlp = plugin_load('helper', 'statistics');
+        $this->hlp = plugin_load('helper', 'cicadastatistics');
 
         // remove pages that are not available because logging its data is disabled
         if ($this->getConf('nolocation')) {
@@ -182,7 +182,7 @@ class admin_plugin_statistics extends AdminPlugin
 
                 foreach (array_keys($info) as $page) {
                     $toc[] = html_mktocitem(
-                        '?do=admin&amp;page=statistics&amp;opt=' . $page .
+                        '?do=admin&amp;page=cicadastatistics&amp;opt=' . $page .
                         '&amp;f=' . $this->from .
                         '&amp;t=' . $this->to,
                         $this->getLang($page),
@@ -192,7 +192,7 @@ class admin_plugin_statistics extends AdminPlugin
                 }
             } else {
                 $toc[] = html_mktocitem(
-                    '?do=admin&amp;page=statistics&amp;opt=' . $key .
+                    '?do=admin&amp;page=cicadastatistics&amp;opt=' . $key .
                     '&amp;f=' . $this->from .
                     '&amp;t=' . $this->to,
                     $this->getLang($key),
@@ -222,7 +222,7 @@ class admin_plugin_statistics extends AdminPlugin
     {
         $params = [
             'do' => 'admin',
-            'page' => 'statistics',
+            'page' => 'cicadastatistics',
             'opt' => $this->opt,
             'f' => $this->from,
             't' => $this->to,
@@ -261,7 +261,7 @@ class admin_plugin_statistics extends AdminPlugin
 
         echo '<form action="' . DOKU_SCRIPT . '" method="get">';
         echo '<input type="hidden" name="do" value="admin" />';
-        echo '<input type="hidden" name="page" value="statistics" />';
+        echo '<input type="hidden" name="page" value="cicadastatistics" />';
         echo '<input type="hidden" name="opt" value="' . $this->opt . '" />';
         echo '<input type="date" name="f" value="' . $this->from . '" class="edit" />';
         echo '<input type="date" name="t" value="' . $this->to . '" class="edit" />';
@@ -275,7 +275,7 @@ class admin_plugin_statistics extends AdminPlugin
 
             $url = buildURLparams([
                 'do' => 'admin',
-                'page' => 'statistics',
+                'page' => 'cicadastatistics',
                 'opt' => $this->opt,
                 'f' => $time,
                 't' => $to,
@@ -330,7 +330,7 @@ class admin_plugin_statistics extends AdminPlugin
         foreach ($quickgraphs as $graph) {
             $params = [
                 'do' => 'admin',
-                'page' => 'statistics',
+                'page' => 'cicadastatistics',
                 'f' => $this->from,
                 't' => $this->to,
                 'opt' => $graph['opt'],

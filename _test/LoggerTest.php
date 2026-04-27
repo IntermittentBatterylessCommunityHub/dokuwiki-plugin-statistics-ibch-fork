@@ -1,10 +1,10 @@
 <?php
 
-namespace dokuwiki\plugin\statistics\test;
+namespace dokuwiki\plugin\cicadastatistics\test;
 
-use dokuwiki\plugin\statistics\Logger;
+use dokuwiki\plugin\cicadastatistics\Logger;
 use DokuWikiTest;
-use helper_plugin_statistics;
+use helper_plugin_cicadastatistics;
 
 /**
  * Tests for the statistics plugin Logger class
@@ -28,7 +28,7 @@ class LoggerTest extends DokuWikiTest
         parent::setUp();
 
         // Load the helper plugin
-        $this->helper = plugin_load('helper', 'statistics');
+        $this->helper = plugin_load('helper', 'cicadastatistics');
 
         // set default user agent
         $_SERVER['HTTP_USER_AGENT'] = self::USER_AGENT;
@@ -55,7 +55,7 @@ class LoggerTest extends DokuWikiTest
         // Test that bot user agents throw exception
         $_SERVER['HTTP_USER_AGENT'] = 'Googlebot/2.1 (+http://www.google.com/bot.html)';
 
-        $this->expectException(\dokuwiki\plugin\statistics\IgnoreException::class);
+        $this->expectException(\dokuwiki\plugin\cicadastatistics\IgnoreException::class);
         $this->expectExceptionMessage('Bot detected, not logging');
         new Logger($this->helper);
     }
@@ -613,7 +613,7 @@ class LoggerTest extends DokuWikiTest
                 'SELECT * FROM campaigns WHERE session = ? ORDER BY rowid DESC LIMIT 1',
                 [self::SESSION_ID]
             );
-            
+
             $this->assertNotNull($campaign, 'Campaign should be logged');
             $this->assertEquals(self::SESSION_ID, $campaign['session']);
             $this->assertEquals($expectedValues[0], $campaign['campaign']);

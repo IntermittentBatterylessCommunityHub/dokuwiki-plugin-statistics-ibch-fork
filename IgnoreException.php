@@ -1,6 +1,6 @@
 <?php
 
-namespace dokuwiki\plugin\statistics;
+namespace dokuwiki\plugin\cicadastatistics;
 
 class IgnoreException extends \Exception
 {
