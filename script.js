@@ -68,7 +68,7 @@ class StatisticsPlugin {
      */
     async logView(action) {
         const params = new URLSearchParams(this.data);
-        const url = `${DOKU_BASE}lib/plugins/statistics/dispatch.php?do=${action}&${params}`;
+        const url = `${DOKU_BASE}lib/plugins/cicadastatistics/dispatch.php?do=${action}&${params}`;
 
         try {
             // Use fetch with keepalive for better reliability
@@ -90,7 +90,7 @@ class StatisticsPlugin {
      */
     logExternal(event) {
         const params = new URLSearchParams(this.data);
-        const url = `${DOKU_BASE}lib/plugins/statistics/dispatch.php?do=o&ol=${encodeURIComponent(event.target.href)}&${params}`;
+        const url = `${DOKU_BASE}lib/plugins/cicadastatistics/dispatch.php?do=o&ol=${encodeURIComponent(event.target.href)}&${params}`;
 
         // Use sendBeacon for reliable tracking
         if (navigator.sendBeacon) {
@@ -109,7 +109,7 @@ class StatisticsPlugin {
      */
     logExit() {
         const params = new URLSearchParams(this.data);
-        const url = `${DOKU_BASE}lib/plugins/statistics/dispatch.php?do=s&${params}`;
+        const url = `${DOKU_BASE}lib/plugins/cicadastatistics/dispatch.php?do=s&${params}`;
 
         if (navigator.sendBeacon) {
             navigator.sendBeacon(url);

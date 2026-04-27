@@ -1,6 +1,6 @@
 <?php
 
-namespace dokuwiki\plugin\statistics;
+namespace dokuwiki\plugin\cicadastatistics;
 
 use DeviceDetector\ClientHints;
 use DeviceDetector\DeviceDetector;
@@ -10,12 +10,12 @@ use DeviceDetector\Parser\OperatingSystem;
 use dokuwiki\Input\Input;
 use dokuwiki\plugin\sqlite\SQLiteDB;
 use helper_plugin_popularity;
-use helper_plugin_statistics;
+use helper_plugin_cicadastatistics;
 
 class Logger
 {
     /** @var helper_plugin_statistics The statistics helper plugin instance */
-    protected helper_plugin_statistics $hlp;
+    protected helper_plugin_cicadastatistics $hlp;
 
     /** @var SQLiteDB The SQLite database instance */
     protected SQLiteDB $db;
@@ -55,7 +55,7 @@ class Logger
      * Parses browser info and set internal vars
      * @throws IgnoreException
      */
-    public function __construct(helper_plugin_statistics $hlp)
+    public function __construct(helper_plugin_cicadastatistics $hlp)
     {
         /** @var Input $INPUT */
         global $INPUT;
@@ -129,13 +129,13 @@ class Logger
      */
     protected function getUID(): string
     {
-        if (!isset($_SESSION[DOKU_COOKIE]['statistics']['uid'])) {
+        if (!isset($_SESSION[DOKU_COOKIE]['cicadastatistics']['uid'])) {
             // when there is no session UID set, we assume this was deliberate and we simply abort all logging
             // @todo we may later make UID generation optional
             throw new IgnoreException('No user ID found');
         }
 
-        return $_SESSION[DOKU_COOKIE]['statistics']['uid'];
+        return $_SESSION[DOKU_COOKIE]['cicadastatistics']['uid'];
     }
 
     /**
@@ -146,12 +146,12 @@ class Logger
      */
     protected function getSession(): string
     {
-        if (!isset($_SESSION[DOKU_COOKIE]['statistics']['id'])) {
+        if (!isset($_SESSION[DOKU_COOKIE]['cicadastatistics']['id'])) {
             // when there is no session ID set, we assume this was deliberate and we simply abort all logging
             throw new IgnoreException('No session ID found');
         }
 
-        return $_SESSION[DOKU_COOKIE]['statistics']['id'];
+        return $_SESSION[DOKU_COOKIE]['cicadastatistics']['id'];
     }
 
     // endregion

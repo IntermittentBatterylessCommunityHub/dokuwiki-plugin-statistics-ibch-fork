@@ -1,17 +1,17 @@
 <?php
 
-namespace dokuwiki\plugin\statistics;
+namespace dokuwiki\plugin\cicadastatistics;
 
 use dokuwiki\Logger;
 use dokuwiki\plugin\sqlite\SQLiteDB;
-use helper_plugin_statistics;
+use helper_plugin_cicadastatistics;
 
 /**
  * This class defines a bunch of SQL queries to fetch various statistics from the database
  */
 class Query
 {
-    protected helper_plugin_statistics $hlp;
+    protected helper_plugin_cicadastatistics $hlp;
     protected SQLiteDB $db;
     protected string $from;
     protected string $to;
@@ -21,7 +21,7 @@ class Query
     /**
      * @param helper_plugin_statistics $hlp
      */
-    public function __construct(helper_plugin_statistics $hlp)
+    public function __construct(helper_plugin_cicadastatistics $hlp)
     {
         $this->hlp = $hlp;
         $this->db = $hlp->getDB();

@@ -1,6 +1,6 @@
 <?php
 
-namespace dokuwiki\plugin\statistics;
+namespace dokuwiki\plugin\cicadastatistics;
 
 /**
  * Extract search Engine Inormation from the HTTP referer

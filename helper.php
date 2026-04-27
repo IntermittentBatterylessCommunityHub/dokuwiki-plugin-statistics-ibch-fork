@@ -4,12 +4,12 @@ use dokuwiki\ErrorHandler;
 use dokuwiki\Extension\Plugin;
 use dokuwiki\HTTP\DokuHTTPClient;
 use dokuwiki\plugin\sqlite\SQLiteDB;
-use dokuwiki\plugin\statistics\DummyLogger;
-use dokuwiki\plugin\statistics\IgnoreException;
-use dokuwiki\plugin\statistics\IpResolverException;
-use dokuwiki\plugin\statistics\Logger;
-use dokuwiki\plugin\statistics\Query;
-use dokuwiki\plugin\statistics\StatisticsGraph;
+use dokuwiki\plugin\cicadastatistics\DummyLogger;
+use dokuwiki\plugin\cicadastatistics\IgnoreException;
+use dokuwiki\plugin\cicadastatistics\IpResolverException;
+use dokuwiki\plugin\cicadastatistics\Logger;
+use dokuwiki\plugin\cicadastatistics\Query;
+use dokuwiki\plugin\cicadastatistics\StatisticsGraph;
 
 /**
  * Statistics Plugin
@@ -17,7 +17,7 @@ use dokuwiki\plugin\statistics\StatisticsGraph;
  * @license GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author  Andreas Gohr <andi@splitbrain.org>
  */
-class helper_plugin_statistics extends Plugin
+class helper_plugin_cicadastatistics extends Plugin
 {
     protected ?Query $oQuery = null;
     protected ?StatisticsGraph $oGraph = null;
@@ -34,7 +34,7 @@ class helper_plugin_statistics extends Plugin
     {
         if (!$this->db instanceof SQLiteDB) {
             if (!class_exists(SQLiteDB::class)) throw new Exception('SQLite Plugin missing');
-            $this->db = new SQLiteDB('statistics', DOKU_PLUGIN . 'statistics/db/');
+            $this->db = new SQLiteDB('cicadastatistics', DOKU_PLUGIN . 'cicadastatistics/db/');
         }
         return $this->db;
     }

@@ -1,5 +1,8 @@
 {
     "require": {
         "matomo/device-detector": "^6.4"
+    },
+    "config": {
+        "autoloader-suffix": "CicadaStatistics"
     }
 }
