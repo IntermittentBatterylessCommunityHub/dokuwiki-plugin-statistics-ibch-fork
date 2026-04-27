@@ -1,7 +1,5 @@
 20260427: this branch is for directory/database name changes, to make sure these are not causing any issues before the code changes.
 
-POTENTIAL ISSUE: ComposerAutoloader name conflict with existing statistics plugin
-
 statistics Plugin for DokuWiki
 
 All documentation for this plugin can be found at

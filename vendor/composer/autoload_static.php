@@ -4,21 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit784f84c33ed90a42455e5fe4268ebade
+class ComposerStaticInitCicadaStatistics
 {
     public static $files = array (
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'D' => 
+        'D' =>
         array (
             'DeviceDetector\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'DeviceDetector\\' => 
+        'DeviceDetector\\' =>
         array (
             0 => __DIR__ . '/..' . '/matomo/device-detector',
         ),
@@ -31,9 +31,9 @@ class ComposerStaticInit784f84c33ed90a42455e5fe4268ebade
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit784f84c33ed90a42455e5fe4268ebade::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit784f84c33ed90a42455e5fe4268ebade::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit784f84c33ed90a42455e5fe4268ebade::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitCicadaStatistics::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitCicadaStatistics::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitCicadaStatistics::$classMap;
 
         }, null, ClassLoader::class);
     }
