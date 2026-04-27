@@ -324,6 +324,7 @@ class Logger
     {
         $ip = clientIP(true);
 
+        // anonymize the IP address for storage?
         if ($this->hlp->getConf('anonips')) {
             $hash = md5($ip . strrev($ip)); // we use the reversed IP as salt to avoid common rainbow tables
             $host = '';
@@ -403,6 +404,8 @@ class Logger
             'session' => $this->session,
         ];
 
+        //CICADA TBD: add session handling
+
         $this->db->exec(
             '
         INSERT INTO pageviews (
@@ -468,6 +471,12 @@ class Logger
             'inline' => $inline,
         ];
 
+        //CICADA: set ip to dummy value if advancedanon enabled
+        //CICADA TBD: Add session handling
+        if ($this->hlp->getConf('advancedanon')){
+            $data['ip'] = '0.0.0.0'
+        }
+
         $this->db->exec(
             '
                 INSERT INTO media ( dt, media, ip, session, size, mime1, mime2, inline )
@@ -493,6 +502,12 @@ class Logger
             'ip' => $this->logIp(), // resolve the IP address
             'session' => $this->session
         ];
+
+        //CICADA: set ip to dummy value if advancedanon enabled
+        //CICADA TBD: Add session handling
+        if ($this->hlp->getConf('advancedanon')){
+            $data['ip'] = '0.0.0.0'
+        }
 
         $this->db->exec(
             'INSERT INTO edits (
@@ -539,6 +554,9 @@ class Logger
     public function logSearch(string $query, array $words): void
     {
         if (!$query) return;
+
+        //CICADA TBD: add advancedanon handling
+        //probably need to break the variables into a separate data struct as with previous functions
 
         $sid = $this->db->exec(
             'INSERT INTO search (dt, ip, session, query) VALUES (CURRENT_TIMESTAMP, ?, ? , ?)',
