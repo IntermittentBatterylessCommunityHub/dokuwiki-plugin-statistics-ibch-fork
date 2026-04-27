@@ -1,8 +1,8 @@
 # General Plugin Info
-base   statistics
+base   cicadastatistics
 author Andreas Gohr
 email  dokuwiki@cosmocode.de
 date   2026-01-16
-name   Statistics Plugin
-desc   Gather usage/view statistics
+name   CICADA Statistics Plugin
+desc   CICADA fork of the Statistics Plugin
 url    http://www.dokuwiki.org/plugin:statistics
