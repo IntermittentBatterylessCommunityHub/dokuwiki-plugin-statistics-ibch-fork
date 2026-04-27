@@ -324,7 +324,6 @@ class Logger
     {
         $ip = clientIP(true);
 
-        // anonymize the IP address for storage?
         if ($this->hlp->getConf('anonips')) {
             $hash = md5($ip . strrev($ip)); // we use the reversed IP as salt to avoid common rainbow tables
             $host = '';
@@ -384,7 +383,14 @@ class Logger
 
 
         $referer = $INPUT->filter('trim')->str('r');
-        $ip = $this->logIp(); // resolve the IP address
+
+        //CICADA: set ip to dummy value if advancedanon enabled
+        if ($this->hlp->getConf('advancedanon')){
+            $ip = '0.0.0.0';
+        }
+        else {
+            $ip = $this->logIp(); // resolve the IP address
+        }
 
         $data = [
             'page' => $INPUT->filter('cleanID')->str('p'),
